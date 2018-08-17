@@ -1,17 +1,33 @@
 # Chinese Hip-pop Generation
 2018 DeeCamp 人工智能夏令营项目，使用 GAN 进行中文嘻哈歌词生成。
 
+Project of DeeCamp 2018, generating Chinese hip-pop lyrics using GAN.
+
 ## Dataset 
 
-训练数据以及押韵表可以从 Google 云[下载]()
-
-可以根据我的[博客说明]()更改数据集
+训练数据以及押韵表可以从 Google 云[下载](https://drive.google.com/drive/folders/1QrO0JAti3A3vlZlUemouOW7jC3K5dFZr?usp=sharing)，也可以可以根据我的[博客说明](2018/08/23/Generate-hip-pop-lyrcis-using-GAN/)更改数据集
 
 ## Requirements
 
 - Python3
 - TensorFlow >= 1.7.0
 - Jieba 
+
+## Model
+
+模型基于 SeqGAN，进行一些修改：
+
+![Model](/img/AI-hippop.jpg)
+
+## Training and Evaluate
+
+下载数据集之后将 data 放在项目目录下，运行
+
+> python3 seq_gan.py
+
+完成训练之后，使用运行 `translate.py` 查看生成的测试集结果，或者使用 `generate_paragraph.py` 测试生成多句效果。
+
+**Note**: CPU version tensorflow may meet problem when doing inference due to `tf.multinomial`. You can change the sampling function in `generator.py`
 
 ## Results
 
