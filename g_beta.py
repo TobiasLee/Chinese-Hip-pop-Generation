@@ -22,7 +22,7 @@ class G_beta:
         self.g_recurrent_unit = self.create_recurrent_unit()  # maps h_tm1 to h_t for generator
         self.g_output_unit = self.create_output_unit()  # maps h_t to o_t (output token logits)
 
-        # placehoder
+        # placeholder
         self.x = tf.placeholder(tf.int32, shape=[self.batch_size, self.sequence_length])
         self.given_num = tf.placeholder(tf.int32)
 
@@ -31,7 +31,6 @@ class G_beta:
             self.processed_x = tf.transpose(tf.nn.embedding_lookup(self.g_embeddings, self.x),
                                             perm=[1, 0, 2])  # seq * batch * emb_size
 
-        #  Unstack the values of a `Tensor` in the TensorArray
         ta_emb_x = tensor_array_ops.TensorArray(
             dtype=tf.float32, size=self.sequence_length
         )
@@ -41,16 +40,9 @@ class G_beta:
             dtype=tf.int32, size=self.sequence_length
         )
         ta_x = ta_x.unstack(tf.transpose(self.x, perm=[1, 0]))  # seq * batch
-        # print(ta_x.shape)
-        # start state -> may be can do something in the future?
-        self.h0 = tf.zeros([self.batch_size, self.hidden_dim])
-        self.h0 = tf.stack([self.h0, self.h0])
-        print(self.h0.shape)
 
-        # gen_x = tensor_array_ops.TensorArray(
-        #     dtype=tf.int32, size=self.sequence_length,
-        #     dynamic_size=False, infer_shape=True
-        # )
+        self.h0 = lstm.h0
+
         gen_x = tensor_array_ops.TensorArray(dtype=tf.int32, size=self.sequence_length,
                                              dynamic_size=False, infer_shape=True)
 
@@ -70,8 +62,6 @@ class G_beta:
             gen_x = gen_x.write(i, next_token)
             return i + 1, x_tp1, h_t, gen_x
 
-        # print(gen_x.shape)
-        # print(tf.nn.embedding_lookup(self.g_embeddings, self.start_token).shape)
         i, x_t, h_tm1, given_num, self.gen_x = control_flow_ops.while_loop(
             cond=lambda i, _1, _2, given_num, _4: i < given_num,
             body=_g_recurrence_1,
@@ -103,7 +93,6 @@ class G_beta:
             # the last token reward
             feed = {discriminator.input_x: input_x, discriminator.dropout_keep_prob: 1.0}
             ypred_for_auc = sess.run(discriminator.ypred_for_auc, feed)
-            # ypred = np.array([item[1] for item in ypred_for_auc])
             # probability of being fake
             ypred = np.array([item[0] for item in ypred_for_auc])
             if i == 0:
