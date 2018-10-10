@@ -155,12 +155,12 @@ def main():
         s = time.time()
         for it in range(ADV_GEN_TIME):
             for i in range(input_data_loader.num_batch):
-                input_x = input_data_loader.next_batch()[0]
-                samples = G.generate(sess, input_x)
-                rewards = g_beta.get_reward(sess, input_x, sample_time, D)
+                target, input_x = input_data_loader.next_batch()
+                samples = G.generate(sess, target)
+                rewards = g_beta.get_reward(sess, target, input_x, sample_time, D)
                 avg = np.mean(np.sum(rewards, axis=1), axis=0) / SEQ_LENGTH
                 print(" epoch : %d time : %di: %d avg %f" % (total_batch, it, i, avg))
-                feed = {G.x: samples, G.rewards: rewards, G.inputs: input_x}
+                feed = {G.x: samples, G.rewards: rewards, G.inputs: target}
                 _ = sess.run(G.g_update, feed_dict=feed)
         # Test
         if total_batch % 5 == 0 or total_batch == TOTAL_BATCH - 1:

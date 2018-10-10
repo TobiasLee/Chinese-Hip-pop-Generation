@@ -77,11 +77,11 @@ class G_beta:
         self.gen_x = self.gen_x.stack()  # seq_length x batch_size
         self.gen_x = tf.transpose(self.gen_x, perm=[1, 0])  # batch_size x seq_length
 
-    def get_reward(self, sess, input_x, roll_out_num, discriminator):
+    def get_reward(self, sess, target, input_x, roll_out_num, discriminator):
         rewards = []
         for i in range(roll_out_num):  # sample times
             for given_num in range(1, self.sequence_length):  # 1 -> 19
-                feed = {self.x: input_x, self.given_num: given_num}
+                feed = {self.x: target, self.given_num: given_num, self.lstm.inputs: input_x}
                 samples = sess.run(self.gen_x, feed)
                 feed = {discriminator.input_x: samples, discriminator.dropout_keep_prob: 1.0}
                 ypred_for_auc = sess.run(discriminator.ypred_for_auc, feed)
@@ -91,7 +91,7 @@ class G_beta:
                 else:
                     rewards[given_num - 1] += ypred
             # the last token reward
-            feed = {discriminator.input_x: input_x, discriminator.dropout_keep_prob: 1.0}
+            feed = {discriminator.input_x: target, discriminator.dropout_keep_prob: 1.0}
             ypred_for_auc = sess.run(discriminator.ypred_for_auc, feed)
             # probability of being fake
             ypred = np.array([item[0] for item in ypred_for_auc])
