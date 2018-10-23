@@ -15,7 +15,7 @@ def generate_samples(sess, generator_model, batch_size, generated_num, output_fi
     data_loader.reset_pointer()
 
     for i in range(generated_num // batch_size):
-        target, input = data_loader.next_batch()
+        input, target = data_loader.next_batch()
         one_batch = generator_model.generate(sess, input)
         # print("batch:  ", one_batch)
         generated_samples.extend(one_batch)
@@ -31,7 +31,7 @@ def pre_train_epoch(sess, trainable_model, data_loader):
     data_loader.reset_pointer()
     # print(data_loader.batch_num)
     for it in range(data_loader.num_batch):
-        target, input_x = data_loader.next_batch()
+        input_x, target = data_loader.next_batch()
         _, g_loss = trainable_model.pretrain_step(sess, input_x, target)
         supervised_g_losses.append(g_loss)
 
