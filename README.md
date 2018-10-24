@@ -13,6 +13,7 @@ The code is a mess right now, please be careful when using. It is welcome to mak
 
 训练数据以及押韵表可以从 Google 云[下载](https://drive.google.com/drive/folders/1QrO0JAti3A3vlZlUemouOW7jC3K5dFZr?usp=sharing)，也可以可以根据我的[博客说明](https://tobiaslee.top/2018/08/23/Generate-hip-pop-lyrcis-using-GAN/)更改数据集
 
+The processed training data and rhyme table can be downloaded from [Goolge Drive](https://drive.google.com/drive/folders/1QrO0JAti3A3vlZlUemouOW7jC3K5dFZr?usp=sharing), the origin lyrics (10, 000 sentence) is also [provided](https://drive.google.com/drive/folders/1QrO0JAti3A3vlZlUemouOW7jC3K5dFZr?usp=sharing).
 ## Requirements
 
 - Python3
