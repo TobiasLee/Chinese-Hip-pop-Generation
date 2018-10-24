@@ -3,6 +3,12 @@
 
 Project of DeeCamp 2018, generating Chinese hip-pop lyrics using GAN.
 
+## Note
+
+因时间仓促，代码写的有些混乱（诸如变量命名 etc.)，也可能存在一些错误，欢迎提 PR 共同改进。未来会继续完善（重构）这个 project。
+
+The code is a mess right now, please be careful when using. It is welcome to make a PR if you find some mistakes. I'll do code refactoring in the future. 
+
 ## Dataset 
 
 训练数据以及押韵表可以从 Google 云[下载](https://drive.google.com/drive/folders/1QrO0JAti3A3vlZlUemouOW7jC3K5dFZr?usp=sharing)，也可以可以根据我的[博客说明](https://tobiaslee.top/2018/08/23/Generate-hip-pop-lyrcis-using-GAN/)更改数据集
