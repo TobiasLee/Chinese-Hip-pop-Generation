@@ -245,7 +245,7 @@ class Generator:
 
         return unit
 
-    def generate_(self, sess, inputs):
+    def generate(self, sess, inputs):
         return sess.run(self.gen_x, feed_dict={self.inputs: inputs})
 
     def pre_train(self, sess, x):
