@@ -157,7 +157,7 @@ def main():
             for i in range(input_data_loader.num_batch):
                 input_x, target = input_data_loader.next_batch()
                 samples = G.generate(sess, input_x)
-                rewards = g_beta.get_reward(sess, target, input_x, sample_time, D)
+                rewards = g_beta.get_reward(sess, samples, input_x, sample_time, D)
                 avg = np.mean(np.sum(rewards, axis=1), axis=0) / SEQ_LENGTH
                 print(" epoch : %d time : %di: %d avg %f" % (total_batch, it, i, avg))
                 feed = {G.x: samples, G.rewards: rewards, G.inputs: input_x}
