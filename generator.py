@@ -43,8 +43,7 @@ class Generator:
             # need to get the first index of each sentence to enforce rhyme
             self.inputs = tf.placeholder(tf.int32, shape=[self.batch_size,
                                                           self.sequence_length])
-            self.processed_inputs = tf.transpose(tf.nn.embedding_lookup(self.g_embeddings,
-                                                                        self.inputs), perm=[1, 0, 2])
+            self.processed_inputs = tf.nn.embedding_lookup(self.g_embeddings, self.inputs)
         with tf.device("/cpu:0"):
             self.processed_x = tf.transpose(tf.nn.embedding_lookup(self.g_embeddings, self.x),
                                             perm=[1, 0, 2])  # seq_length x batch_size x emb_dim for LSTM
