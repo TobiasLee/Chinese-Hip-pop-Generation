@@ -5,9 +5,9 @@ Project of DeeCamp 2018, generating Chinese hip-pop lyrics using GAN.
 
 ## Note
 
-因时间仓促，代码写的有些混乱（诸如变量命名 etc.)，也可能存在一些错误，欢迎提 PR 共同改进。未来会继续完善（重构）这个 project。
+因时间仓促，代码写的有些混乱（诸如变量命名 etc.)，也可能存在一些错误，欢迎提 PR 共同改进。由于精力有限，不再更新，有问题欢迎提 Issue，我会尽最大努力地提供帮助。
 
-The code is a mess right now, please be careful when using. It is welcome to make a PR if you find some mistakes. I'll do code refactoring in the future. 
+The code is a mess right now, please be careful when using. It is welcome to make a PR if you find some mistakes and raise issues for asking help.
 
 ## Dataset 
 
@@ -95,7 +95,17 @@ Example 3:
 
 ## Acknowledgement
 
-Thanks to our team: [lihao2333](https://github.com/lihao2333)、[llluckygirlrhy](https://github.com/llluckygirlrhy)、[张林峰](https://github.com/zhanglinfeng1997)、[FrankLiu](https://github.com/FrankLiu2018)、[liuaiting](https://github.com/liuaiting)
+This project is a collaboration fruit with the following great team members:
+
+[lihao2333](https://github.com/lihao2333)
+
+[llluckygirlrhy](https://github.com/llluckygirlrhy)
+
+[Linfeng Zhang](https://github.com/zhanglinfeng1997)
+
+[FrankLiu](https://github.com/FrankLiu2018)
+
+[liuaiting](https://github.com/liuaiting)
 
 
 
