@@ -22,7 +22,7 @@ BATCH_SIZE = 256
 vocab_size = 11681  #
 
 # Adversarial Training Parameters
-TOTAL_BATCH = 30  # Total Adversarial Epochs
+TOTAL_BATCH = 5  # Total Adversarial Epochs
 PRE_GEN_NUM = 0  # supervise (maximum likelihood estimation) epochs
 PRE_DIS_NUM = 0
 generated_num = 256
